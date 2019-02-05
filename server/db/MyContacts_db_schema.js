@@ -30,6 +30,31 @@ const db_MyContacts_db = [];
 
 
  /**
+  * Anagrafica
+  */
+db_MyContacts_db_schema.Anagrafica = new mongoose.Schema({
+	cognome: {
+		type: 'String'
+	},
+	dataNascita: {
+		type: 'Date'
+	},
+	nome: {
+		type: 'String'
+	},
+	residenza: {
+		type: 'String'
+	},
+	//RELATIONS
+	
+	
+	//EXTERNAL RELATIONS
+	/*
+	*/
+});
+
+
+ /**
   * Company
   */
 db_MyContacts_db_schema.Company = new mongoose.Schema({
@@ -88,6 +113,58 @@ db_MyContacts_db_schema.Contact = new mongoose.Schema({
 });
 
 
+ /**
+  * Qualifica
+  */
+db_MyContacts_db_schema.Qualifica = new mongoose.Schema({
+	anniEsperienza: {
+		type: 'Number'
+	},
+	ruolo: {
+		type: 'String'
+	},
+	//RELATIONS
+	
+	
+	//EXTERNAL RELATIONS
+	/*
+	*/
+});
+
+
+ /**
+  * User
+  */
+db_MyContacts_db_schema.User = new mongoose.Schema({
+	mail: {
+		type: 'String'
+	},
+	name: {
+		type: 'String'
+	},
+	password: {
+		type: 'String', 
+		required : true
+	},
+	roles: [{
+		type: 'String'
+	}],
+	surname: {
+		type: 'String'
+	},
+	username: {
+		type: 'String', 
+		required : true
+	},
+	//RELATIONS
+	
+	
+	//EXTERNAL RELATIONS
+	/*
+	*/
+});
+
+
 
 // Import schema customization
 require('./MyContacts_db_customSchema.js');
@@ -95,8 +172,11 @@ var MyContacts_db_model = require('./MyContacts_db_crud.js');
 
 // Declare mongoose model
 
+db_MyContacts_db.Anagrafica = MyContacts_db_model.connection.model('Anagrafica', db_MyContacts_db_schema.Anagrafica );
 db_MyContacts_db.Company = MyContacts_db_model.connection.model('Company', db_MyContacts_db_schema.Company );
 db_MyContacts_db.Contact = MyContacts_db_model.connection.model('Contact', db_MyContacts_db_schema.Contact );
+db_MyContacts_db.Qualifica = MyContacts_db_model.connection.model('Qualifica', db_MyContacts_db_schema.Qualifica );
+db_MyContacts_db.User = MyContacts_db_model.connection.model('User', db_MyContacts_db_schema.User );
 
 module.exports = db_MyContacts_db;
 
